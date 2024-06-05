@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  email           String   @unique @db.VarChar(191)
+  name            String   @db.VarChar(80)
+  password        String   @db.VarChar(120)
+  profule_picture String?  @db.VarChar(191)
+  isBan           Boolean  @default(false)
+  role            UserRole @default(user)
+
+  Comment Comment[]
+}
+
+enum UserRole {
+  user
+  admin
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  album_id  Int
+  message   String   @db.Text
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @updatedAt @db.Timestamp(0)
+  user_id   Int
+  isDelete  Boolean  @default(false)
+  deletedAt DateTime @db.Timestamp(0)
+
+  user          User  @relation(fields: [user_id], references: [id])
+  comment_album Album @relation(fields: [album_id], references: [id])
+}
+
+model Album {
+  id            Int    @id @default(autoincrement())
+  name          String @db.VarChar(191)
+  picture_album String @db.VarChar(250)
+  decription    String @db.Text
+  picture_band  String @db.VarChar(250)
+
+  List_song List_song[]
+  Comment   Comment[]
+}
+
+model List_song {
+  id       Int     @id @default(autoincrement())
+  album_id Int
+  no       String  @db.VarChar(2)
+  title    String  @db.VarChar(191)
+  writer   String? @db.VarChar(191)
+  length   String? @db.VarChar(20)
+
+  album Album @relation(fields: [album_id], references: [id])
+}
