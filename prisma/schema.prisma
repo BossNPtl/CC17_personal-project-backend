@@ -49,7 +49,7 @@ model Album {
   name          String @db.VarChar(191)
   picture_album String @db.VarChar(250)
   decription    String @db.Text
-  picture_band  String @db.VarChar(250)
+  picture_band  String? @db.VarChar(250)
 
   List_song List_song[]
   Comment   Comment[]
