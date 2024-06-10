@@ -5,7 +5,7 @@ const userService = require('../services/user-service');
 const authenticate = async (req, res, next) => {
     try {
         const userLogin = req.headers.authorization;
-        if (!userLogin || !userLogin.startWith('Bearer ')) {
+        if (!userLogin || !userLogin.startsWith('Bearer ')) {
             createError({
                 message: 'unauthenticated',
                 statusCode: 401
@@ -23,7 +23,7 @@ const authenticate = async (req, res, next) => {
             });
         }
         
-        // delete user.password;
+        delete user.password;
 
         req.user = user;
         next();
