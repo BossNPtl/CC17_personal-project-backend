@@ -8,4 +8,8 @@ userService.findEmail = email => prisma.user.findFirst({
     where: { email: email }
 });
 
+userService.findUserById = id => prisma.user.findFirst({
+    where: { id: id }
+});
+
 module.exports = userService;
