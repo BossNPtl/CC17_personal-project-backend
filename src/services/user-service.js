@@ -19,4 +19,8 @@ userService.findNameUser = ( id, newName ) =>
     data: { name: newName.name }
 });
 
+userService.selectAlbum = (id) => prisma.album.findFirst({
+    where: { id: id }
+})
+
 module.exports = userService;

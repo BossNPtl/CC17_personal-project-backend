@@ -2,8 +2,6 @@ const prisma = require('../models/prisma');
 
 const adminService = {};
 
-adminService.checkAdmin = (id) => prisma.role.findFirst({
-    where: { id: id, role: admin },
-});
+adminService.createAlbum = (data) => prisma.album.create({ data });
 
 module.exports = adminService

@@ -14,21 +14,22 @@ datasource db {
 }
 
 model User {
-  id              Int      @id @default(autoincrement())
-  email           String   @unique @db.VarChar(191)
-  name            String   @db.VarChar(80)
-  password        String   @db.VarChar(120)
-  profile_picture String?  @db.VarChar(191)
-  isBan           Boolean  @default(false)
-  role            UserRole @default(user)
+  id              Int     @id @default(autoincrement())
+  email           String  @unique @db.VarChar(191)
+  name            String  @db.VarChar(80)
+  password        String  @db.VarChar(120)
+  profile_picture String? @db.VarChar(191)
+  isBan           Boolean @default(false)
+  isAdmin         Boolean @default(false)
+  // role            UserRole @default(user)
 
   Comment Comment[]
 }
 
-enum UserRole {
-  user
-  admin
-}
+// enum UserRole {
+//   user
+//   admin
+// }
 
 model Comment {
   id        Int      @id @default(autoincrement())
@@ -45,10 +46,10 @@ model Comment {
 }
 
 model Album {
-  id            Int    @id @default(autoincrement())
-  name          String @db.VarChar(191)
-  picture_album String @db.VarChar(250)
-  decription    String @db.Text
+  id            Int     @id @default(autoincrement())
+  name          String  @db.VarChar(191)
+  picture_album String  @db.VarChar(250)
+  decription    String  @db.Text
   picture_band  String? @db.VarChar(250)
 
   List_song List_song[]

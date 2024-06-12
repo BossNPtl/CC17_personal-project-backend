@@ -6,6 +6,7 @@ const notFoundMiddleware = require('./src/middlewares/not-found');
 const errorMiddleware = require('./src/middlewares/errorMiddleware');
 const authRouter = require('./src/routes/auth-route');
 const userRouter = require('./src/routes/user-route');
+const albumRouter = require('./src/routes/album-route');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/album', albumRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);

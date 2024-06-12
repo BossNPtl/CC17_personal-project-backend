@@ -29,11 +29,16 @@ exports.renameValidator = (req, res, next) => {
     next();
 };
 
-exports.checkRoleValidator = (req, res, next) => {
+exports.checkAdminValidator = (req, res, next) => {
+    console.log('################')
     const user = req.user
-    // console.log(user.role)
-    if (user.role !== 'admin') {
+    console.log(user.isAdmin)
+    if (!user.isAdmin) {
         return res.status(400).json({ message: 'You not have premission'})
     }
     next();
+};
+
+exports.createAlbumValidator = (req, res, next) => {
+    
 };
