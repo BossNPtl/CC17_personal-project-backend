@@ -1,9 +1,8 @@
 --- REGISTER ---
 POST /auth/register
 # BODY
-    - firstName
-    - lastName
-    - emailOrMobile
+    - email
+    - name
     - password
     - confirmPassword
 
@@ -22,3 +21,14 @@ RESPONSE
     - 200 accessToken
     - 400 message
     - 500 message
+
+--- Rename ---
+PATCH /user/rename
+#BODY
+    - name
+
+RESPONSE
+    - 200
+    - 400
+    - 401 (token)
+    - 500

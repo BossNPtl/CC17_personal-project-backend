@@ -18,7 +18,7 @@ model User {
   email           String   @unique @db.VarChar(191)
   name            String   @db.VarChar(80)
   password        String   @db.VarChar(120)
-  profule_picture String?  @db.VarChar(191)
+  profile_picture String?  @db.VarChar(191)
   isBan           Boolean  @default(false)
   role            UserRole @default(user)
 

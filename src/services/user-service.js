@@ -12,4 +12,11 @@ userService.findUserById = id => prisma.user.findFirst({
     where: { id: id }
 });
 
+// userService.findNameUser = ( id, newName ) => console.log(id, newName)
+userService.findNameUser = ( id, newName ) => 
+    prisma.user.update({
+    where: { id: id },
+    data: { name: newName.name }
+});
+
 module.exports = userService;
