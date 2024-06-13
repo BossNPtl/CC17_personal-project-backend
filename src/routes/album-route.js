@@ -7,5 +7,6 @@ const albumRouter = express.Router();
 
 albumRouter.post('/addAlbum', authenticate, checkAdminValidator, albumController.createAlbum);
 albumRouter.get('/:albumId', albumController.selectAlbum);
+albumRouter.post('/:albumId/addSong', authenticate, checkAdminValidator, albumController.addSong);
 
 module.exports = albumRouter;
