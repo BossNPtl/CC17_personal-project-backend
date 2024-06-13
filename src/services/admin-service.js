@@ -8,4 +8,4 @@ adminService.addSong = (data) => prisma.list_song.create({
     data
 });
 
-module.exports = adminService
+module.exports = adminService;

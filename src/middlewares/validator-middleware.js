@@ -38,7 +38,3 @@ exports.checkAdminValidator = (req, res, next) => {
     }
     next();
 };
-
-exports.createAlbumValidator = (req, res, next) => {
-    
-};
