@@ -8,6 +8,7 @@ const errorMiddleware = require('./src/middlewares/errorMiddleware');
 const authRouter = require('./src/routes/auth-route');
 const userRouter = require('./src/routes/user-route');
 const albumRouter = require('./src/routes/album-route');
+const commentRouter = require('./src/routes/comment-route');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/album', albumRouter);
+app.use('/comment', commentRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);

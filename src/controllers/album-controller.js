@@ -51,11 +51,11 @@ albumController.addSong = async (req, res, next) => {
         // const id = +req.params.albumId;
         const data = req.body;
         data.album_id = +req.params.albumId
-        console.log('params ----->>>>', typeof req.params)
+        // console.log('params ----->>>>', typeof req.params)
         console.log('data ----->>>>', data)
         const newSong = await adminService.addSong(data);
 
-        res.status(201).json(data);
+        res.status(201).json(newSong);
     }   catch (err) {
         next(err);
     }
