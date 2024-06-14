@@ -9,5 +9,6 @@ albumRouter.get('/allAlbum', albumController.getAllAlbum);
 albumRouter.post('/addAlbum', authenticate, checkAdminValidator, albumController.createAlbum);
 albumRouter.get('/:albumId', albumController.selectAlbum);
 albumRouter.post('/:albumId/addSong', authenticate, checkAdminValidator, albumController.addSong);
+albumRouter.get('/:albumId/allSong', albumController.getAllSong);
 
 module.exports = albumRouter;

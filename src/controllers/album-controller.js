@@ -35,7 +35,7 @@ albumController.selectAlbum = async (req, res, next) => {
         const existAlbum = await userService.selectAlbum(id);
         if (!existAlbum) {
             createError({
-                message: 'Not found album'
+                message: 'Not found album.'
             });
         }
         res.status(200).json(existAlbum);
@@ -56,6 +56,23 @@ albumController.addSong = async (req, res, next) => {
         const newSong = await adminService.addSong(data);
 
         res.status(201).json(data);
+    }   catch (err) {
+        next(err);
+    }
+};
+
+albumController.getAllSong = async (req, res, next) => {
+    try {
+        const albumId = +req.params.albumId
+        const existSong = await albumService.getAllSong(albumId);
+        console.log('data ----->>>', albumId, existSong);
+        if (!existSong) {
+            createError({
+                message: 'Not have list song.'
+            });
+        }
+        res.status(200).json(existSong);
+
     }   catch (err) {
         next(err);
     }
