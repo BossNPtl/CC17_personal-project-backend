@@ -38,8 +38,8 @@ model Comment {
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @updatedAt @db.Timestamp(0)
   user_id   Int
-  isDelete  Boolean  @default(false)
-  deletedAt DateTime @db.Timestamp(0)
+  // isDelete  Boolean  @default(false)
+  deletedAt DateTime? @db.Timestamp(0)
 
   user          User  @relation(fields: [user_id], references: [id])
   comment_album Album @relation(fields: [album_id], references: [id])
