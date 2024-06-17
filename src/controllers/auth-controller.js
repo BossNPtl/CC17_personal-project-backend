@@ -7,7 +7,6 @@ const authController = {};
 
 authController.register = async (req, res, next) => {
     try {
-        console.log('%%%%%%%%%%%%%%%%%%')
         const data = req.input;
         // const data = req.body;
         const existEmail = await userService.findEmail(data.email);
@@ -17,7 +16,6 @@ authController.register = async (req, res, next) => {
                 statusCode: 400
             });
         }
-        console.log('$$$$$$$$$$$$$$$$$$$')
         data.password = await hashService.hash(data.password);
         await userService.createUser(data);
         res.status(201).json({ message: 'user created' });
@@ -29,7 +27,6 @@ authController.register = async (req, res, next) => {
 
 authController.login = async (req, res, next) => {
     try {
-        console.log('%%%%%%%%%%%%%%%%%%')
         const existUser = await userService.findEmail(req.input.email);
         if (!existUser) {
             createError({
@@ -37,7 +34,6 @@ authController.login = async (req, res, next) => {
                 statusCode: 400
             });
         }
-        console.log('$$$$$$$$$$$$$$$$$$$')
         const truePassword = await hashService.compare(
             req.input.password, existUser.password
         );
@@ -49,7 +45,6 @@ authController.login = async (req, res, next) => {
             });
         }
 
-        // res.status(200).json({ message: 'login success' })
         const accessToken = jwtService.create({ id: existUser.id });
         res.status(200).json({ message: 'login success', accessToken })
 

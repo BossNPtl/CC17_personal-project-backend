@@ -30,11 +30,10 @@ exports.renameValidator = (req, res, next) => {
 };
 
 exports.checkAdminValidator = (req, res, next) => {
-    console.log('################')
     const user = req.user
-    console.log(user.isAdmin)
+    // console.log(user.isAdmin)
     if (!user.isAdmin) {
-        return res.status(400).json({ message: 'You not have premission'})
+        return res.status(400).json({ message: 'You not have permission'})
     }
     next();
 };

@@ -2,6 +2,7 @@ require('dotenv')
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const multer = require('multer');
 
 const notFoundMiddleware = require('./src/middlewares/not-found');
 const errorMiddleware = require('./src/middlewares/errorMiddleware');
@@ -15,6 +16,8 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+
+app.use('/public/images', express.static("public/images"));
 
 app.use('/auth', authRouter);
 app.use('/user', userRouter);

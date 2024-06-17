@@ -32,11 +32,11 @@ model User {
 // }
 
 model Comment {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   album_id  Int
-  message   String   @db.Text
-  createdAt DateTime @default(now()) @db.Timestamp(0)
-  updatedAt DateTime @updatedAt @db.Timestamp(0)
+  message   String    @db.Text
+  createdAt DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt DateTime  @updatedAt @db.Timestamp(0)
   user_id   Int
   // isDelete  Boolean  @default(false)
   deletedAt DateTime? @db.Timestamp(0)
@@ -46,12 +46,13 @@ model Comment {
 }
 
 model Album {
-  id            Int     @id @default(autoincrement())
-  name          String  @db.VarChar(191)
-  picture_album String  @db.VarChar(250)
-  description    String  @db.Text
-  release       String  @db.VarChar(191)  
-  picture_band  String? @db.VarChar(250)
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(191)
+  picture_album String    @db.VarChar(250)
+  description   String    @db.Text
+  release       String    @db.VarChar(191)
+  picture_band  String?   @db.VarChar(250)
+  deletedAt     DateTime? @db.Timestamp(0)
 
   List_song List_song[]
   Comment   Comment[]

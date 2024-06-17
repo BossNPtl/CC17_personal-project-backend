@@ -1,7 +1,6 @@
 const { postCommentSchema, editCommentSchema } = require("../validators/comment-validotor");
 
 exports.postCommentValidate = (req, res, next) => {
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@');
     const { value, error } = postCommentSchema.validate(req.user);
     if (error) {
         return res.status(400).json({ message: error.details[0].message });
