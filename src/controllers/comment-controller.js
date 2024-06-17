@@ -4,14 +4,12 @@ const commentController = {};
 
 commentController.postComment = async (req, res, next) => {
     try {
-        console.log('%%%%%%%%%%%%%%%%%%%%%');
+        console.log('%%%%%%%%%%%%%%%%%%%%% PostComment %%%%%%%%%%%%%%%%%%%%%');
         const data = {...req.body}
         // const data = req.input
         data.user_id = req.user.id
         data.album_id = +req.params.albumId
-        console.log('data ------>>>', data)
         const post = await commentService.postComment(data);
-        console.log('post ------>>>', data)
         res.status(201).json(post);
         
     }   catch (err) {
@@ -21,11 +19,9 @@ commentController.postComment = async (req, res, next) => {
 
 commentController.getAllComment = async (req, res, next) => {
     try {
-        console.log('%%%%%%%%%%%%%%%%%%%%%');
+        console.log('%%%%%%%%%%%%%%%%%%%%% GetAllComment %%%%%%%%%%%%%%%%%%%%%');
         const album_id = +req.params.albumId;
-        console.log('album_id --->>', album_id);
         const comment = await commentService.getAllComment(album_id);
-        console.log(comment)
         res.status(200).json(comment);
     }   catch (err) {
         next(err);
@@ -34,11 +30,10 @@ commentController.getAllComment = async (req, res, next) => {
 
 commentController.editComment = async (req, res, next) => {
     try {
-        console.log('%%%%%%%%%%%%%%%%%%%%%');
-        const data = {...req.body};
-        console.log(data);
+        console.log('%%%%%%%%%%%%%%%%%%%%% Edit Comment %%%%%%%%%%%%%%%%%%%%%');
+        const data = req.body.message;
         const id = +req.params.id
-        console.log(id);
+        console.log(data, id)
         const edit = await commentService.patchComment(id, data);
         res.status(200).json(edit);
     }   catch (err) {
@@ -48,9 +43,8 @@ commentController.editComment = async (req, res, next) => {
 
 commentController.deleteComment = async (req, res, next) => {
     try {
-        console.log('%%%%%%%%%%%%%%%%%%%%%');
+        console.log('%%%%%%%%%%%%%%%%%%%%% DeleteComment %%%%%%%%%%%%%%%%%%%%%');
         const id = +req.params.id
-        console.log(id);
         const comment = await commentService.deleteComment(id);
         res.status(200).json(comment);
 
