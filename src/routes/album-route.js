@@ -10,5 +10,6 @@ albumRouter.post('/addAlbum', authenticate, checkAdminValidator, albumController
 albumRouter.get('/:albumId', albumController.selectAlbum);
 albumRouter.post('/:albumId/addSong', authenticate, checkAdminValidator, albumController.addSong);
 albumRouter.get('/:albumId/allSong', albumController.getAllSong);
+albumRouter.patch('/:albumId/deleteAlbum', authenticate, checkAdminValidator, albumController.deleteAlbum);
 
 module.exports = albumRouter;

@@ -69,4 +69,15 @@ albumController.getAllSong = async (req, res, next) => {
     }
 };
 
+albumController.deleteAlbum = async (req, res, next) => {
+    try {
+        const albumId = +req.params.albumId
+        console.log(albumId)
+        const album = await adminService.deleteAlbum(albumId);
+        res.status(200).json(album);
+    }   catch (err) {
+        next(err);
+    }
+}
+
 module.exports = albumController;
