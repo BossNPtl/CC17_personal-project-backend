@@ -9,6 +9,7 @@ albumService.getAllAlbum = () => prisma.album.findMany({
 
 albumService.getAllSong = (albumId) => prisma.list_song.findMany({
     where: { album_id: albumId },
+    orderBy: { no: 'asc' }
 });
 
 module.exports = albumService;
