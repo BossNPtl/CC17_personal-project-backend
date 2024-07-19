@@ -98,6 +98,26 @@ albumController.getAllSong = async (req, res, next) => {
     }
 };
 
+albumController.editSong = async (req, res, next) => {
+    try {
+        // console.log("params --->>", req.params);
+        // console.log("songId --->>", req.params.songId);
+        // console.log("body --->>", req.body);
+        const songId = +req.params.songId
+        const data = req.body
+        const existSong = await adminService.editSong(songId, data);
+        if (!existSong) {
+            createError({
+                message: 'Not have list song.'
+            });
+        }
+        res.status(200).json(existSong);
+    } catch (err) {
+        console.log(err)
+        next(err);
+    }
+}
+
 albumController.deleteAlbum = async (req, res, next) => {
     try {
         const albumId = +req.params.albumId

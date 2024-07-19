@@ -13,4 +13,9 @@ adminService.deleteAlbum = (id) => prisma.album.update({
     data: { deletedAt: new Date() }
 });
 
+adminService.editSong = (songId, data) => prisma.list_song.update({
+    where: { id: songId },
+    data: data
+})
+
 module.exports = adminService;
